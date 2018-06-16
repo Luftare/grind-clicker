@@ -1,0 +1,169 @@
+* {
+  font-family: sans-serif;
+  user-select: none;
+}
+
+body,
+html {
+  margin: 0;
+  padding: 0;
+}
+
+.world {
+  width: 100%;
+  padding: 100px;
+  background: lightblue;
+  cursor: none;
+}
+
+.weapon {
+  z-index: 100;
+  display: block;
+  transform-origin: center 70%;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  width: 50px;
+  height: 100px;
+  background-size: contain;
+  background-position: center;
+  pointer-events: none;
+}
+
+.weapon--strike {
+  animation: weapon-strike--sword 400ms;
+}
+
+.weapon--sword {
+  background-image: url(https://orig00.deviantart.net/5f2b/f/2014/145/3/d/medieval_heavy_sword_pixel_art_by_husseinhorack-d7jnld5.png);
+}
+
+@keyframes weapon-strike--sword {
+  0%,
+  100% {
+  }
+  10% {
+    transform: translate(-50%, -50%) rotateY(-50deg) rotateX(50deg);
+  }
+  20% {
+    transform: translate(-50%, -50%) rotateY(-50deg) rotateX(60deg)
+      rotateZ(-45deg);
+  }
+  70% {
+    transform: translate(-50%, -50%) rotateY(-50deg) rotateX(60deg)
+      rotateZ(-45deg);
+  }
+  80% {
+    transform: translate(-50%, -50%) rotateY(-50deg) rotateX(50deg);
+  }
+}
+
+.fyi {
+  position: absolute;
+  z-index: 9;
+  color: white;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  animation: fyi-animation 2000ms;
+  opacity: 0;
+}
+
+fyi.important {
+  font-size: 1.2em;
+  color: orange;
+  font-weight: bold;
+  animation: text_fade 4000ms;
+  z-index: 10;
+}
+
+@keyframes fyi-animation {
+  0% {
+    transform: translate(-50%, -50%) translate(0, 0);
+    opacity: 1;
+  }
+  20% {
+    transform: translate(-50%, -50%) translate(0, -50px) scale(1.2, 1.2);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) translate(0, -150px);
+    opacity: 0;
+  }
+}
+
+.target {
+  animation: target--idle 1s infinite;
+  border-radius: 5vw;
+  display: inline-block;
+  width: 10vw;
+  height: 10vw;
+  margin: 16px;
+  background-image: url("http://rs87.pbsrc.com/albums/k137/barbarianfighter/web/bicho_chato_do_cacete.gif?w=280&h=210&fit=crop");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.target.target--dead {
+  transition: all 1s;
+  animation: none;
+  background-image: url("https://img00.deviantart.net/ba52/i/2006/070/2/d/i_hate_murlocs_by_iamelly.png");
+  transform: translate(0, 25%) scaleY(0.2);
+  opacity: 0.2;
+  pointer-events: none;
+}
+
+.target.target--dead > .hp {
+  display: none;
+}
+
+.target > .hp {
+  position: relative;
+  width: 100%;
+  display: block;
+  background: red;
+  height: 6px;
+  transform: translateY(-8px);
+}
+
+.hp > .hp-value {
+  transition: width 500ms;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  background: lightgreen;
+  height: 100%;
+}
+
+.target:hover > .hp {
+}
+
+.target:hover,
+.target:active {
+  box-shadow: 0 0 25px red;
+}
+
+.target:active {
+  animation: target--receive-hit 200ms;
+}
+
+@keyframes target--receive-hit {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  40% {
+    transform: translate(0, 0) scale(0.8);
+    background-color: rgba(255, 0, 0, 0.1);
+  }
+}
+
+@keyframes target--idle {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: scale(1, 1.03) translateY(-2%);
+  }
+}
