@@ -16,7 +16,7 @@ export default {
           <div class="hp">
             <div class="hp-value" :style="{ width: target.hp + '%' }"></div>
           </div>
-          {{target.hp}}
+          <slot></slot>
         </div>`
     });
   },
@@ -31,22 +31,31 @@ export default {
       this.targets_receiveDamage(target, damage);
     },
     targets_receiveDamage(target, damage) {
+      const willDie = target.hp <= damage.value && target.hp > 0;
       target.hp -= damage.value;
-      if (target.hp <= 0) {
+      if (willDie) {
         this.targets_kill(target);
       }
     },
     targets_spawn(count) {
-      this.targets.all.push(
-        ...[...Array(count)].map(() => ({
-          hp: 100,
-          fyis: []
-        }))
-      );
+      this.targets.all.push(...[...Array(count)].map(this.targets_generateNew));
+    },
+    targets_generateNew() {
+      return {
+        hp: 100,
+        level: 1
+      };
     },
     targets_kill(target) {
-      //this.targets.all = this.targets.all.filter(t => t !== target);
       this.player_receiveExpFromKill(target);
+      setTimeout(() => {
+        this.targets.all = this.targets.all.map(t => {
+          if (t === target) {
+            return this.targets_generateNew();
+          }
+          return t;
+        });
+      }, 5000);
     }
   }
 };

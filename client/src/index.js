@@ -1,8 +1,12 @@
 import Vue from "vue/dist/vue.js";
-import player from "./player";
-import targets from "./targets";
-import weapon from "./weapon";
-import fyis from "./fyis";
+import player from "./modules/player";
+import targets from "./modules/targets";
+import weapon from "./modules/weapon";
+import fyis from "./modules/fyis";
+
+import views from "./views";
+
+views.registerComponent(Vue);
 
 targets.registerComponent(Vue);
 weapon.registerComponent(Vue);
@@ -14,7 +18,8 @@ const app = new Vue({
     player: player.data,
     weapon: weapon.data,
     fyis: fyis.data,
-    targets: targets.data
+    targets: targets.data,
+    views: views.data
   },
   methods: {
     ...targets.methods,
