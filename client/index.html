@@ -15,6 +15,7 @@
   <div id="root">
     <fyi-instance v-for="f in fyis.all" :fyi="f"></fyi-instance>
     <views-route name="grind" :current="views.current">
+      <top-hud :level="player.level" :hp="player.hp" :max-hp="player_maxHp"></top-hud>
       <weapon-instance :weapon="weapon"></weapon-instance>
       <div class="world" @mousemove="weapon_followMouse" @mousedown="weapon_strike" @mouseup="weapon_endStrike">
         <div class="targets">

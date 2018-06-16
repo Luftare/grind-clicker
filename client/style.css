@@ -1,6 +1,7 @@
 * {
   font-family: sans-serif;
   user-select: none;
+  box-sizing: border-box;
 }
 
 body,
@@ -10,10 +11,12 @@ html {
 }
 
 .world {
-  width: 100%;
   padding: 100px;
   background: lightblue;
   cursor: none;
+  background-image: url('https://pre00.deviantart.net/3c67/th/pre/f/2013/297/c/6/wow___stranglethorn_vale_8_by_byorrsingyr-d6p3ibv.jpg');
+  background-size: cover;
+  background-position: center;
 }
 
 .weapon {
@@ -88,6 +91,11 @@ html {
     transform: translate(-50%, -50%) translate(0, -150px);
     opacity: 0;
   }
+}
+
+.targets {
+  display: flex;
+  justify-content: space-between;
 }
 
 .target {

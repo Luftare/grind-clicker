@@ -44,6 +44,7 @@ export default {
     targets_startAttacks(target) {
       if (target.attackTimerId) return;
       target.attackTimerId = setInterval(() => {
+        this.player_receiveHitFromTarget(target);
         target.striking = true;
         setTimeout(() => {
           target.striking = false;
