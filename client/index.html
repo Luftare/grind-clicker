@@ -13,14 +13,13 @@
 </head>
 <body>
   <div id="root">
-    <div v-for="f in fyis.all" v-bind:style="{ top: f.y + 'px', left: f.x + 'px' }" class="fyi">{{f.text}}</div>
+    <fyi-instance v-for="f in fyis.all" :fyi="f"></fyi-instance>
     <weapon-instance :weapon="weapon"></weapon-instance>
     <div class="world" @mousemove="weapon_followMouse" @mousedown="weapon_strike" @mouseup="weapon_endStrike">
       <div class="targets">
         <targets-instance v-for="(t, i) in targets.all" :target="t" v-on:hit=targets_receiveWeaponHit(t) ></targets-instance>
       </div>
     </div>
-
     <div class="stats">
       <h3 @mousedown="player_levelUp">Level: {{player.level}}</h3>
       <h3>Exp: {{player.exp}}</h3>

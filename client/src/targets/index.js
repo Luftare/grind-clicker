@@ -22,7 +22,7 @@ export default {
   },
   methods: {
     targets_receiveWeaponHit(target) {
-      const damage = this.player_getWeaponDamage(target);
+      const damage = this.player_getMeleeDamage(target);
       const position = {
         x: this.weapon.x,
         y: this.weapon.y

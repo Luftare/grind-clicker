@@ -6,6 +6,7 @@ import fyis from "./fyis";
 
 targets.registerComponent(Vue);
 weapon.registerComponent(Vue);
+fyis.registerComponent(Vue);
 
 const app = new Vue({
   el: "#root",

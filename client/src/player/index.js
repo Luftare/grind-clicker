@@ -15,11 +15,14 @@ export default {
     player_receiveExpFromKill(target) {
       this.player.exp += 50;
     },
-    player_getWeaponDamage(target) {
-      return {
-        value: Math.floor(Math.random() * 20 + 30),
-        crit: Math.random() > 0.93
-      };
+    player_getMeleeDamage(target) {
+      const crit = Math.random() > 0.9;
+      const baseDamage = this.player.level + 10;
+      const variance = 0.3;
+      const varianceInstance = Math.random() * variance + (1 - variance);
+      const variedDamage = Math.floor(varianceInstance * baseDamage);
+      const value = crit ? variedDamage * 2 : variedDamage;
+      return { value, crit };
     }
   }
 };

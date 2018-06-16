@@ -3,6 +3,25 @@ export default {
     all: [],
     timeoutId: 0
   },
+  registerComponent(Vue) {
+    Vue.component("fyi-instance", {
+      props: ["fyi"],
+      template: `
+        <div
+          :style="{
+            top: fyi.y + 'px',
+            left: fyi.x + 'px'
+          }"
+          class="fyi"
+          :class="{
+            'fyi--important': fyi.important
+          }"
+        >
+          {{fyi.text}}
+        </div>
+      `
+    });
+  },
   methods: {
     fyis_spawnAtPosition(text = "", position, important = false) {
       const msg = {
