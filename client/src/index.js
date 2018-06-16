@@ -7,7 +7,6 @@ import fyis from "./modules/fyis";
 import views from "./views";
 import topHud from "./components/top-hud";
 
-
 views.registerComponent(Vue);
 topHud.registerComponent(Vue);
 

@@ -7,7 +7,8 @@ export default {
           style="
             position: absolute;
             display: flex;
-            top: 8px;
+            top: 16px;
+            left: 16px;
           "
           :style="{
 

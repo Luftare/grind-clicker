@@ -18,14 +18,8 @@
       <top-hud :level="player.level" :hp="player.hp" :max-hp="player_maxHp"></top-hud>
       <weapon-instance :weapon="weapon"></weapon-instance>
       <div class="world" @mousemove="weapon_followMouse" @mousedown="weapon_strike" @mouseup="weapon_endStrike">
-        <div class="targets">
-          <targets-instance v-for="(t, i) in targets.all" :target="t" v-on:hit=targets_receiveWeaponHit(t) ></targets-instance>
-        </div>
+        <targets-instance v-for="(t, i) in targets.all" :target="t" v-on:hit=targets_receiveWeaponHit(t) ></targets-instance>
       </div>
     </views-route>
-    <div class="stats">
-      <h3 @mousedown="player_levelUp">Level: {{player.level}}</h3>
-      <h3>Exp: {{player.exp}}</h3>
-    </div>
   </div>
 </body>

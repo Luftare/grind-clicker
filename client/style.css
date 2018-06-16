@@ -8,13 +8,17 @@ body,
 html {
   margin: 0;
   padding: 0;
+  height: 100vh;
 }
 
 .world {
   padding: 100px;
-  background: lightblue;
+  height: 100vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   cursor: none;
-  background-image: url('https://pre00.deviantart.net/3c67/th/pre/f/2013/297/c/6/wow___stranglethorn_vale_8_by_byorrsingyr-d6p3ibv.jpg');
+  background-image: url("https://pre00.deviantart.net/3c67/th/pre/f/2013/297/c/6/wow___stranglethorn_vale_8_by_byorrsingyr-d6p3ibv.jpg");
   background-size: cover;
   background-position: center;
 }
