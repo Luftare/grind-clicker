@@ -7,6 +7,7 @@ export default {
           style="
             position: absolute;
             width: 100%;
+            pointer-events: none;
             display: flex;
             bottom: 0px;
             left: 0px;

@@ -5,6 +5,7 @@ export default {
       template: `
         <div
           style="
+            pointer-events: none;
             position: absolute;
             display: flex;
             top: 16px;
