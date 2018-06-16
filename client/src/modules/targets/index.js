@@ -10,7 +10,9 @@ export default {
           class="target"
           @mousedown="$emit('hit')"
           :class="{
-            'target--dead': target.hp <= 0
+            'target--dead': target.hp <= 0,
+            'target--aggro': target.aggro,
+            'target--striking': target.striking
           }"
         >
           <div class="hp">
@@ -33,9 +35,20 @@ export default {
     targets_receiveDamage(target, damage) {
       const willDie = target.hp <= damage.value && target.hp > 0;
       target.hp -= damage.value;
+      target.aggro = true;
+      this.targets_startAttacks(target);
       if (willDie) {
         this.targets_kill(target);
       }
+    },
+    targets_startAttacks(target) {
+      if (target.attackTimerId) return;
+      target.attackTimerId = setInterval(() => {
+        target.striking = true;
+        setTimeout(() => {
+          target.striking = false;
+        }, 1000);
+      }, 2000);
     },
     targets_spawn(count) {
       this.targets.all.push(...[...Array(count)].map(this.targets_generateNew));
@@ -43,11 +56,16 @@ export default {
     targets_generateNew() {
       return {
         hp: 100,
-        level: 1
+        level: 1,
+        aggro: false,
+        attacking: false,
+        attackTimerId: null,
+        striking: false
       };
     },
     targets_kill(target) {
       this.player_receiveExpFromKill(target);
+      clearInterval(target.attackTimerId);
       setTimeout(() => {
         this.targets.all = this.targets.all.map(t => {
           if (t === target) {

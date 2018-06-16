@@ -136,8 +136,13 @@ html {
 }
 
 .target:hover,
-.target:active {
+.target:active,
+.target.target--aggro {
   box-shadow: 0 0 25px red;
+}
+
+.target.target--striking {
+  animation: target--strike 300ms;
 }
 
 .target:active {
@@ -162,5 +167,15 @@ html {
   }
   50% {
     transform: scale(1, 1.03) translateY(-2%);
+  }
+}
+
+@keyframes target--strike {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  20% {
+    transform: scale(1.5, 1.5) translateY(-2%) rotateZ(-30deg);
   }
 }
