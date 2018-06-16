@@ -51,8 +51,8 @@ export default {
         }, 1000);
       }, 2000);
     },
-    targets_spawn(count) {
-      this.targets.all.push(...[...Array(count)].map(this.targets_generateNew));
+    targets_spawn(count = 3) {
+      this.targets.all = [...Array(count)].map(this.targets_generateNew);
     },
     targets_generateNew() {
       return {

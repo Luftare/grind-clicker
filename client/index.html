@@ -13,13 +13,17 @@
 </head>
 <body>
   <div id="root">
-    <fyi-instance v-for="f in fyis.all" :fyi="f"></fyi-instance>
     <views-route name="grind" :current="views.current">
+      <fyi-instance v-for="f in fyis.all" :fyi="f"></fyi-instance>
       <top-hud :level="player.level" :hp="player.hp" :max-hp="player_maxHp"></top-hud>
       <weapon-instance :weapon="weapon"></weapon-instance>
       <div class="world" @mousemove="weapon_followMouse" @mousedown="weapon_strike" @mouseup="weapon_endStrike">
         <targets-instance v-for="(t, i) in targets.all" :target="t" v-on:hit=targets_receiveWeaponHit(t) ></targets-instance>
       </div>
+    </views-route>
+    <views-route name="ghost" :current="views.current">
+      Meh :/
+      <button @click="player_spawn">Ress me</button>
     </views-route>
   </div>
 </body>

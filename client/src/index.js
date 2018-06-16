@@ -33,7 +33,7 @@ const app = new Vue({
     ...player.computed
   },
   mounted() {
-    this.targets_spawn(3);
+    this.targets_spawn();
   }
 });
 

@@ -8,7 +8,7 @@ export default {
       template: `
         <div
           :style="{
-            display: name === current ? 'default' : 'none'
+            display: name === current ? 'block' : 'none'
           }"
         >
           <slot></slot>

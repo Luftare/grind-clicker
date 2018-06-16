@@ -29,7 +29,24 @@ export default {
       }
     },
     player_receiveHitFromTarget(target) {
-      this.player.hp -= target.level + 10;
+      const damage = target.level + 10;
+      const willDie = this.player.hp - damage <= 0 && this.player.hp > 0;
+      this.player.hp -= damage;
+      if (willDie) {
+        this.player_die();
+      }
+    },
+    player_die() {
+      this.views.current = "ghost";
+      this.targets.all.forEach(t => {
+        if (t.attackTimerId) clearInterval(t.attackTimerId);
+      });
+      this.targets.all = [];
+    },
+    player_spawn() {
+      this.player.hp = this.player_maxHp;
+      this.targets_spawn();
+      this.views.current = "grind";
     },
     player_getMeleeDamage(target) {
       const crit = Math.random() > 0.9;
