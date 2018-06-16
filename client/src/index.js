@@ -6,9 +6,11 @@ import fyis from "./modules/fyis";
 
 import views from "./views";
 import topHud from "./components/top-hud";
+import bottomHud from "./components/bottom-hud";
 
 views.registerComponent(Vue);
 topHud.registerComponent(Vue);
+bottomHud.registerComponent(Vue);
 
 targets.registerComponent(Vue);
 weapon.registerComponent(Vue);

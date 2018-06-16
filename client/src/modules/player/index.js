@@ -1,7 +1,7 @@
 export default {
   data: {
     level: 1,
-    exp: 0,
+    exp: 40,
     hp: 110
   },
   computed: {
