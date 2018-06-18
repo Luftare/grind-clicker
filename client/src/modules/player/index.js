@@ -30,7 +30,7 @@ export default {
         : addedExp;
       if (willLevelUp) {
         this.player_levelUp();
-        this.fyis_spawnInfo("Level up!");
+        this.fyis_spawnInfo("Level up!", true);
       } else {
         this.fyis_spawnInfo(`+${gainedExp}exp`);
       }
