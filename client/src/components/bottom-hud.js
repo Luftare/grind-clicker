@@ -29,6 +29,7 @@ export default {
               style="
                 background: purple;
                 height: 10px;
+                transition: width 500ms;
               "
               :style="{
                 width: (100 * exp / maxExp) + '%'
