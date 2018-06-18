@@ -15,11 +15,26 @@
   <div id="root">
     <views-route name="grind" :current="views.current">
       <fyi-instance v-for="f in fyis.all" :fyi="f"></fyi-instance>
-      <top-hud :level="player.level" :hp="player.hp" :max-hp="player_maxHp"></top-hud>
+      <top-hud
+        :name="player.name"
+        :level="player.level"
+        :hp="player.hp"
+        :max-hp="player_maxHp"
+        :target-name="targets.selected.name"
+        :target-level="targets.selected.level"
+        :target-hp="targets.selected.hp"
+        :target-max-hp="targets.selected.maxHp"
+      ></top-hud>
       <bottom-hud :exp="player.exp" :max-exp="player_expToNextLevel"></bottom-hud>
       <weapon-instance :weapon="weapon"></weapon-instance>
       <div class="world" @mousemove="weapon_followMouse" @mousedown="weapon_strike" @mouseup="weapon_endStrike">
-        <targets-instance v-for="(t, i) in targets.all" :target="t" v-on:hit=targets_receiveWeaponHit(t) ></targets-instance>
+        <targets-instance
+          v-for="(t, i) in targets.all"
+          :target="t"
+          v-on:hit="targets_receiveWeaponHit(t)"
+          v-on:hover="targets_select(t)"
+          v-on:hover-end="targets_unselect()"
+        ></targets-instance>
       </div>
     </views-route>
     <views-route name="ghost" :current="views.current">

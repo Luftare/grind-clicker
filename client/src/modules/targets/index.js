@@ -1,6 +1,7 @@
 export default {
   data: {
-    all: []
+    all: [],
+    selected: {}
   },
   registerComponent(Vue) {
     Vue.component("targets-instance", {
@@ -8,12 +9,14 @@ export default {
       template: `
         <div
           class="target"
-          @mousedown="$emit('hit')"
           :class="{
             'target--dead': target.hp <= 0,
             'target--aggro': target.aggro,
             'target--striking': target.striking
           }"
+          @mousedown="$emit('hit')"
+          @mouseenter="$emit('hover')"
+          @mouseleave="$emit('hover-end')"
         >
           <div class="hp">
             <div class="hp-value" :style="{ width: target.hp + '%' }"></div>
@@ -23,6 +26,18 @@ export default {
     });
   },
   methods: {
+    targets_select(target) {
+      this.targets.selected = target;
+    },
+    targets_unselect() {
+      if (
+        this.targets.selected &&
+        this.targets.selected.hp > 0 &&
+        this.targets.selected.aggro
+      )
+        return;
+      this.targets.selected = {};
+    },
     targets_receiveWeaponHit(target) {
       const damage = this.player_getMeleeDamage(target);
       const position = {
@@ -38,7 +53,7 @@ export default {
       target.aggro = true;
       this.targets_startAttacks(target);
       if (willDie) {
-        this.targets_kill(target);
+        this.targets_die(target);
       }
     },
     targets_startAttacks(target) {
@@ -56,7 +71,9 @@ export default {
     },
     targets_generateNew() {
       return {
+        name: "Lokki",
         hp: 100,
+        maxHp: 100,
         level: 1,
         aggro: false,
         attacking: false,
@@ -64,8 +81,13 @@ export default {
         striking: false
       };
     },
-    targets_kill(target) {
+    targets_die(target) {
       this.player_receiveExpFromKill(target);
+      target.aggro = false;
+      target.striking = false;
+      if (this.targets.selected === target) {
+        this.targets_unselect();
+      }
       clearInterval(target.attackTimerId);
       setTimeout(() => {
         this.targets.all = this.targets.all.map(t => {
@@ -75,6 +97,7 @@ export default {
           return t;
         });
       }, 5000);
-    }
+    },
+    targets_everySecond() {}
   }
 };

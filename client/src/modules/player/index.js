@@ -1,5 +1,6 @@
 export default {
   data: {
+    name: "Jeppe",
     level: 1,
     exp: 40,
     hp: 110
@@ -10,6 +11,9 @@ export default {
     },
     player_maxHp() {
       return this.player.level * 10 + 100;
+    },
+    player_hpRegeneration() {
+      return this.player.level / 2 + 3;
     }
   },
   methods: {
@@ -32,6 +36,7 @@ export default {
       const damage = target.level + 10;
       const willDie = this.player.hp - damage <= 0 && this.player.hp > 0;
       this.player.hp -= damage;
+      this.targets.selected = target;
       if (willDie) {
         this.player_die();
       }
@@ -56,6 +61,15 @@ export default {
       const variedDamage = Math.floor(varianceInstance * baseDamage);
       const value = crit ? variedDamage * 2 : variedDamage;
       return { value, crit };
+    },
+    player_everySecond() {
+      const inFight = this.targets.all.filter(t => t.aggro).length > 0;
+      if (this.player.hp > 0 && !inFight) {
+        this.player.hp = Math.min(
+          this.player.hp + this.player_hpRegeneration,
+          this.player_maxHp
+        );
+      }
     }
   }
 };

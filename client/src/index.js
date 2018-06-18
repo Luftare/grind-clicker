@@ -36,6 +36,10 @@ const app = new Vue({
   },
   mounted() {
     this.targets_spawn();
+    setInterval(() => {
+      this.player_everySecond();
+      this.targets_everySecond();
+    }, 1000);
   }
 });
 
