@@ -25,6 +25,7 @@ html {
 }
 
 .weapon {
+  animation: weapon--idle 150ms;
   z-index: 100;
   display: block;
   transform-origin: center 70%;
@@ -38,30 +39,36 @@ html {
 }
 
 .weapon--strike {
-  animation: weapon-strike--sword 400ms;
+  animation: weapon--strike 100ms;
+  transform: translate(-50%, -50%) rotateY(-50deg) rotateX(60deg)
+    rotateZ(-45deg);
 }
 
 .weapon--sword {
   background-image: url(https://orig00.deviantart.net/5f2b/f/2014/145/3/d/medieval_heavy_sword_pixel_art_by_husseinhorack-d7jnld5.png);
 }
 
-@keyframes weapon-strike--sword {
-  0%,
+@keyframes weapon--idle {
+  0% {
+    transform: translate(-50%, -50%) rotateY(-50deg) rotateX(60deg)
+      rotateZ(-45deg);
+  }
+  30% {
+    transform: translate(-50%, -50%) rotateY(-50deg) rotateX(60deg)
+      rotateZ(-45deg);
+  }
   100% {
-  }
-  10% {
     transform: translate(-50%, -50%) rotateY(-50deg) rotateX(50deg);
   }
-  20% {
-    transform: translate(-50%, -50%) rotateY(-50deg) rotateX(60deg)
-      rotateZ(-45deg);
-  }
-  70% {
-    transform: translate(-50%, -50%) rotateY(-50deg) rotateX(60deg)
-      rotateZ(-45deg);
-  }
-  80% {
+}
+
+@keyframes weapon--strike {
+  50% {
     transform: translate(-50%, -50%) rotateY(-50deg) rotateX(50deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotateY(-50deg) rotateX(60deg)
+      rotateZ(-45deg);
   }
 }
 
