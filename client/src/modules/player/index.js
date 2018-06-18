@@ -2,8 +2,8 @@ export default {
   data: {
     name: "Jeppe",
     level: 1,
-    exp: 110,
-    hp: 110
+    exp: 0,
+    hp: 110 
   },
   computed: {
     player_expToNextLevel() {
