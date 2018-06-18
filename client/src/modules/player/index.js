@@ -2,7 +2,7 @@ export default {
   data: {
     name: "Jeppe",
     level: 1,
-    exp: 70,
+    exp: 110,
     hp: 110
   },
   computed: {
@@ -30,6 +30,9 @@ export default {
         : addedExp;
       if (willLevelUp) {
         this.player_levelUp();
+        this.fyis_spawnInfo("Level up!");
+      } else {
+        this.fyis_spawnInfo(`+${gainedExp}exp`);
       }
     },
     player_receiveHitFromTarget(target) {
