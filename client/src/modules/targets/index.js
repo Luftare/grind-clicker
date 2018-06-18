@@ -93,10 +93,11 @@ export default {
         this.targets.all = this.targets.all.map(t => {
           if (t === target) {
             const newTarget = this.targets_generateNew();
-            const willAggro = Math.random() > 0.7;
+            const willAggro = Math.random() > 0.5;
             if (willAggro) {
               newTarget.aggro = true;
               this.targets_startAttacks(newTarget);
+              this.targets_select(newTarget);
             }
             return newTarget;
           }
