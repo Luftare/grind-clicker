@@ -92,7 +92,13 @@ export default {
       setTimeout(() => {
         this.targets.all = this.targets.all.map(t => {
           if (t === target) {
-            return this.targets_generateNew();
+            const newTarget = this.targets_generateNew();
+            const willAggro = Math.random() > 0.7;
+            if (willAggro) {
+              newTarget.aggro = true;
+              this.targets_startAttacks(newTarget);
+            }
+            return newTarget;
           }
           return t;
         });
