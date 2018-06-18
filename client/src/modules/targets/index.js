@@ -41,8 +41,8 @@ export default {
     targets_receiveWeaponHit(target) {
       const damage = this.player_getMeleeDamage(target);
       const position = {
-        x: this.weapon.x,
-        y: this.weapon.y
+        x: this.weapon.x + (Math.random() - 0.5) * 40,
+        y: this.weapon.y + (Math.random() - 0.5) * 20
       };
       this.fyis_spawnAtPosition(damage.value, position, damage.crit);
       this.targets_receiveDamage(target, damage);

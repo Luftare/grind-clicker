@@ -2,7 +2,7 @@ export default {
   data: {
     name: "Jeppe",
     level: 1,
-    exp: 40,
+    exp: 70,
     hp: 110
   },
   computed: {
@@ -19,7 +19,7 @@ export default {
   methods: {
     player_levelUp() {
       this.player.level++;
-      this.player.hp = this.player.maxHp;
+      this.player.hp = this.player_maxHp;
     },
     player_receiveExpFromKill(target) {
       const gainedExp = target.level + 10;
